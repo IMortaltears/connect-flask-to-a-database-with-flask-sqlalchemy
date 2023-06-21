@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    pv.kubernetes.io/provisioned-by: rancher.io/local-path
+  creationTimestamp: "2023-04-30T17:15:25Z"
+  finalizers:
+  - kubernetes.io/pv-protection
+  name: pvc-c464e670-eddd-4558-b85f-4d2fc0eee3ff
+  resourceVersion: "1466400"
+  uid: e270158d-a01d-4f68-8d19-49f95ed5ed6f
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 100Mi
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: nginx-claim0
+    namespace: chris
+    resourceVersion: "1466372"
+    uid: c464e670-eddd-4558-b85f-4d2fc0eee3ff
+  hostPath:
+    path: /var/lib/rancher/k3s/storage/pvc-c464e670-eddd-4558-b85f-4d2fc0eee3ff_chris_nginx-claim0
+    type: DirectoryOrCreate
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - nserver
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: local-path
+  volumeMode: Filesystem
+status:
+  phase: Bound
